@@ -1,6 +1,7 @@
+#include <iostream>
+#include <fstream>
 #include "file.h"
 #include "geometry.h"
-#include <fstream>
 
 using namespace std;
 
@@ -26,6 +27,13 @@ int countPoints(const char* fileName)
 		return in;
 	}
 
+	ostream& operator <<(ostream& out, const Triangle& tr)
+	{
+		for (int i = 0; i < 3; i++)
+			out << tr.vertexes[i].x << tr.vertexes[i].y << ' ';
+		return out;
+	}
+
 	bool readPoints(const char* fileName, Point* pointArray, int maxPointNum)
 	{
 		ifstream in(fileName);
@@ -39,12 +47,12 @@ int countPoints(const char* fileName)
 		}
 		return true;
 	}
-	bool writeTriangles(const char* fileName, Triangle* trArray, int trNum)
+	bool writeTriangles(const char* fileName, const Triangle* trArray, int trNum)
 	{
 		ofstream out(fileName);
 		if (!out.is_open())
 			return false;
 		for (int i = 0; i < trNum; i++)
-			out << "#" << i + 1 << ": " << trArray[i].vertexes << endl;
+			out << "#" << i + 1 << ": " << trArray[i].area << endl;
 		return true;
 	}
