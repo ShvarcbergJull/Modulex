@@ -3,19 +3,19 @@
 
 using namespace std;
 
-void clearPoint(Point p)
+void clearPoint(Point& p)
 {
 	p.x = p.y = 0.0;
 }
 
-void clearTriangle(Triangle tr)
+void clearTriangle(Triangle& tr)
 {
-	for (int i = 0; i < 3; i++)
+ 	for (int i = 0; i < 3; i++)
 		clearPoint(tr.vertexes[i]);
 	tr.area = 0.0;
 }
 
-void findAndInsert(Triangle* trArray, int lenght, const Triangle triangle)
+void findAndInsert(Triangle* &trArray, int lenght, const Triangle& triangle)
 {
 	int pos;
 	for (pos = lenght - 1; pos >= 0; pos--)
@@ -47,7 +47,7 @@ void searchLargestTriangles(const Point* pointArray, int pointNum, Triangle* trA
 			for (int k = j + 1; k < pointNum; k++)
 			{
 				tr.vertexes[2] = pointArray[k];
-				calcTringleArea(tr);
+				tr.area = calcTringleArea(tr);
 				findAndInsert(trArray, maxTrNum, tr);
 			}
 		}
