@@ -30,7 +30,8 @@ int countPoints(const char* fileName)
 	ostream& operator <<(ostream& out, const Triangle& tr)
 	{
 		for (int i = 0; i < 3; i++)
-			out << tr.vertexes[i].x << tr.vertexes[i].y << ' ';
+			out << tr.vertexes[i].x << ' ' << tr.vertexes[i].y << ' ';
+		out << "S = " << tr.area << ' ';
 		return out;
 	}
 
@@ -53,6 +54,6 @@ int countPoints(const char* fileName)
 		if (!out.is_open())
 			return false;
 		for (int i = 0; i < trNum; i++)
-			out << "#" << i + 1 << ": " << trArray[i].area << endl;
+			out << "#" << i + 1 << ": " << trArray[i] << endl;
 		return true;
 	}
