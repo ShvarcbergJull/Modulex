@@ -1,4 +1,3 @@
-# Modulex
 #include <iostream>
 #include <fstream>
 #include <locale.h>
@@ -8,18 +7,10 @@
 
 using namespace std;
 
-
-int main(int argc, char** argv)
+int main(void)
 {
 	setlocale(LC_ALL, "Russian");
-	if (argc < 3)
-	{
-		cout << "Запуск: Triangles.exe inf.txt outf.txt" << endl;
-		return -1;
-	}
-	const char* inFileName = argv[1];
-	const char* outFileName = argv[2];
-	int pointNum = countPoints(inFileName);
+	int pointNum = countPoints("in.txt");
 	if (pointNum < 0)
 	{
 		cout << "Входного файла не существует" << endl;
@@ -31,7 +22,7 @@ int main(int argc, char** argv)
 		return -3;
 	}
 	Point* pointArray = new Point[pointNum];
-	if (!readPoints(inFileName, pointArray, pointNum))
+	if (!readPoints("in.txt", pointArray, pointNum))
 	{
 		cout << "Неизвестная ошибка при вводе точек" << endl;
 		return -3;
@@ -39,7 +30,7 @@ int main(int argc, char** argv)
 	const int maxTrNum = 3;
 	Triangle* trArray = new Triangle[maxTrNum];
 	searchLargestTriangles(pointArray, pointNum, trArray, maxTrNum);
-	if (!writeTriangles(outFileName, trArray, maxTrNum))
+	if (!writeTriangles("out.txt", trArray, maxTrNum))
 	{
 		cout << "Не удалось записать результат" << endl;
 		return -4;
