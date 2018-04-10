@@ -28,7 +28,7 @@ void findAndInsert(Triangle* &trArray, int lenght, const Triangle& triangle)
 		return;
 	for (int m = lenght - 2; m >= pos; m--)
 		trArray[m + 1] = trArray[m];
-	trArray[pos].area = triangle.area;
+	trArray[pos] = triangle;
 }
 
 void searchLargestTriangles(const Point* pointArray, int pointNum, Triangle* trArray, int maxTrNum)
