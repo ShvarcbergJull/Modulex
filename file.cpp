@@ -21,39 +21,39 @@ int countPoints(const char* fileName)
 	return i;
 }
 
-	istream& operator >>(istream& in, Point& p)
-	{
-		in >> p.x >> p.y;
-		return in;
-	}
+istream& operator >>(istream& in, Point& p)
+{
+	in >> p.x >> p.y;
+	return in;
+}
 
-	ostream& operator <<(ostream& out, const Triangle& tr)
-	{
-		for (int i = 0; i < 3; i++)
-			out << tr.vertexes[i].x << ' ' << tr.vertexes[i].y << ' ';
-		out << "P = " << tr.perimetr << ' ' << "S = " << tr.area << ' ';
-		return out;
-	}
+ostream& operator <<(ostream& out, const Triangle& tr)
+{
+	for (int i = 0; i < 3; i++)
+		out << tr.vertexes[i].x << ' ' << tr.vertexes[i].y << ' ';
+	out << "P = " << tr.perimetr << ' ' << "S = " << tr.area << ' ';
+	return out;
+}
 
-	bool readPoints(const char* fileName, Point* pointArray, int maxPointNum)
+bool readPoints(const char* fileName, Point* pointArray, int maxPointNum)
+{
+	ifstream in(fileName);
+	if (!in.is_open())
+		return 0;
+	for (int i = 0; i < maxPointNum; i++)
 	{
-		ifstream in(fileName);
-		if (!in.is_open())
-			return 0;
-		for (int i = 0; i < maxPointNum; i++)
-		{
-			in >> pointArray[i];
-			if (in.fail())
-				return false;
-		}
-		return true;
-	}
-	bool writeTriangles(const char* fileName, const Triangle* trArray, int trNum)
-	{
-		ofstream out(fileName);
-		if (!out.is_open())
+		in >> pointArray[i];
+		if (in.fail())
 			return false;
-		for (int i = 0; i < trNum; i++)
-			out << "#" << i + 1 << ": " << trArray[i] << endl;
-		return true;
 	}
+	return true;
+}
+bool writeTriangles(const char* fileName, const Triangle* trArray, int trNum)
+{
+	ofstream out(fileName);
+	if (!out.is_open())
+		return false;
+	for (int i = 0; i < trNum; i++)
+		out << "#" << i + 1 << ": " << trArray[i] << endl;
+	return true;
+}
