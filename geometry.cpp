@@ -23,3 +23,12 @@ double calcTringleArea(Triangle tr)
 	double c = calcDistance(v[2], v[0]);
 	return calcAreaBySides(a, b, c);
 }
+
+double calcTringlePerim(Triangle tr)
+{
+	Point* v = tr.vertexes;
+	double a = calcDistance(v[0], v[1]);
+	double b = calcDistance(v[1], v[2]);
+	double c = calcDistance(v[2], v[0]);
+	return a + b + c;
+}
