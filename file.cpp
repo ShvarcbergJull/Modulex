@@ -31,7 +31,7 @@ int countPoints(const char* fileName)
 	{
 		for (int i = 0; i < 3; i++)
 			out << tr.vertexes[i].x << ' ' << tr.vertexes[i].y << ' ';
-		out << "S = " << tr.area << ' ';
+		out << "P = " << tr.perimetr << ' ' << "S = " << tr.area << ' ';
 		return out;
 	}
 
